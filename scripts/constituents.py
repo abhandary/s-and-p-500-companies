@@ -47,7 +47,8 @@ def extract():
             # fix as now they have links to the companies on WP
             name = ' '.join(fields[1].stripped_strings)
             sector = fields[3].string
-            records.append([symbol, name, exchange, sector, profile_page, price_vs_fair_value, financials, valuation, performance])
+            sub_sector = fields[4].string
+            records.append([symbol, name, exchange, sector, sub_sector, profile_page, price_vs_fair_value, financials, valuation, performance])
 
     header = ['Symbol', 'Name', 'Sector']
     writer = csv.writer(open('../data/constituents.csv', 'w'), lineterminator='\n')
@@ -72,7 +73,7 @@ def extract():
                 with tag('td'):
                     text(record[3])
                 with tag('td'):
-                    line('a', 'link', href=record[4])
+                    text(record[4])
                 with tag('td'):
                     line('a', 'link', href=record[5])
                 with tag('td'):
@@ -81,6 +82,9 @@ def extract():
                     line('a', 'link', href=record[7])
                 with tag('td'):
                     line('a', 'link', href=record[8])
+                with tag('td'):
+                    line('a', 'link', href=record[9])
+
 
     final = soup.prettify().replace("##placeholder##", doc.getvalue())
 
