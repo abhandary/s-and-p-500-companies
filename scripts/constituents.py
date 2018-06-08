@@ -50,7 +50,7 @@ def extract():
             sub_sector = fields[4].string
             records.append([symbol, name, exchange, sector, sub_sector, profile_page, price_vs_fair_value, financials, valuation, performance])
 
-    header = ['Symbol', 'Name', 'Sector']
+    header = ['Symbol', 'Name', 'Exchange', 'Sector', 'Sub Sector', 'Profile Page', 'Price vs Fair Value', 'Financials', 'Valuation', 'Performance']
     writer = csv.writer(open('../data/constituents.csv', 'w'), lineterminator='\n')
     writer.writerow(header)
     # Sorting ensure easy tracking of modifications
